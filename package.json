@@ -1,34 +1,34 @@
 {
-  "name": "sedsvit-website",
-  "version": "0.0.1",
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "prepare": "vp config"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.1",
-    "tailwindcss": "^4.3.3"
-  },
-  "devDependencies": {
-    "vite": "catalog:",
-    "vite-plus": "catalog:"
-  },
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.3.4",
-      "onFail": "download"
+    "name": "sedsvit-website",
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "prepare": "vp config"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.3.3",
+        "astro": "^7.3.1",
+        "tailwindcss": "^4.3.3"
+    },
+    "devDependencies": {
+        "vite": "catalog:",
+        "vite-plus": "catalog:"
+    },
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "12.3.4",
+            "onFail": "download"
+        }
+    },
+    "engines": {
+        "node": ">=22.12.0"
+    },
+    "allowScripts": {
+        "esbuild": true
     }
-  },
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "allowScripts": {
-    "esbuild": true
-  }
 }
