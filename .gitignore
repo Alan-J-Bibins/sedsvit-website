@@ -26,3 +26,4 @@ pnpm-debug.log*
 # dotenv environment variable files
 .env.*
 !.env.example
+/graphify-out
