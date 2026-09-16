@@ -3,10 +3,40 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <h1 class='text-9xl font-black'>SEDSVIT</h1>
+    <div
+        id="canvas-container"
+        class="fixed top-0 left-0 w-full h-full -z-10 opacity-40"
+    ></div>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+            <section class="h-screen w-full bg-black text-white flex justify-center items-center">
+                <div class="flex flex-col justify-center items-center">
+                    <h1 class="text-[168px] font-black leading-24">SEDSVIT</h1>
+                    <h4 class="text-5xl font-extralight">
+                        SPACE - IT'S PRETTY DANG COOL
+                    </h4>
+                </div>
+            </section>
+
+            <section class="h-screen w-full white text-white flex justify-center items-center"></section>
+        </div>
+    </main>
 
     <script>
-        import {gsap} from 'gsap';
-        import * as THREE from 'three';
+        import { gsap } from "gsap";
+        import { ScrollSmoother } from "gsap/ScrollSmoother";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+        import * as THREE from "three";
+
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+        ScrollSmoother.create({
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 1.5,
+            effects: true,
+            smoothTouch: 1,
+        });
     </script>
 </Layout>
