@@ -1,0 +1,53 @@
+---
+---
+
+<section id='section1' class="h-screen w-full text-white flex justify-center items-center">
+    <div class="flex flex-col justify-center items-center">
+        <h1 class="text-[168px] font-black leading-24">SEDSVIT</h1>
+        <h4 class="text-5xl font-extralight">SPACE - IT'S PRETTY DANG COOL</h4>
+    </div>
+</section>
+
+<script>
+    import gsap from "gsap";
+    import {
+        scene,
+        camera,
+        initScene,
+        animate,
+    } from "../../scripts/threejs-scene-handler";
+    import * as THREE from "three";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    initScene();
+    
+    scene.background = new THREE.Color("#000000");
+
+    const ambientLight = new THREE.AmbientLight(0x404040);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+
+    // Set initial camera position
+    camera.position.set(0, 0.5, 2);
+    
+    const sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(),
+        new THREE.MeshPhysicalMaterial({ color: "#00ff00" }),
+    );
+    sphere.position.set(0, 0, 0);
+
+    scene.add(sphere, ambientLight, directionalLight);
+
+    animate();
+
+    ScrollTrigger.create({
+        trigger: "#section1",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        onUpdate: (self) => {
+            camera.position.z = 2 + (self.progress * 3); // 2 to 5
+        },
+    });
+</script>
