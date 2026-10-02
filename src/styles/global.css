@@ -3,3 +3,7 @@
 @theme {
     --font-sans: var(--font-thunder);
 }
+
+body {
+    @apply bg-black;
+}
