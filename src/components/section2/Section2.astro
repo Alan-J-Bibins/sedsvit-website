@@ -1,0 +1,132 @@
+<section
+    id="section2"
+    class="h-screen w-full text-black flex justify-center items-center bg-white p-4"
+>
+    <div id="totalAboutUs" class="flex flex-col justify-center items-start">
+        <h1 id="aboutUs" class="text-[168px] font-black ml-56 leading-tight">
+            About Us
+        </h1>
+        <h4 id="aboutUsDesc" class="text-5xl font-extralight mx-64">
+            Students for the Exploration and Development of Space (SEDS) is a
+            global student-run NPO that encourages and empowers the world’s
+            youth to make an impact in the Space industry. SEDS VIT serves as
+            the headquarters for SEDS India. We aim to promote interest in space
+            exploration in students across India and increase inter-chapter
+            collaboration. With its various conferences, events, competitions
+            and outreach programmes, the chapter has been a guiding light for
+            the students in and around Vellore and has earned the award for the
+            Best Student Chapter in VIT three times since its inception.
+        </h4>
+    </div>
+</section>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(SplitText);
+
+    const split = new SplitText("#aboutUsDesc", {
+        type: "words",
+    });
+
+    const tl = gsap
+        .timeline({
+            scrollTrigger: {
+                trigger: "#section2",
+                start: "top top",
+                end: "+=100%",
+                toggleActions: "play none none reverse",
+                scrub: false,
+                markers: true,
+                pin: true,
+            },
+        })
+        .fromTo(
+            "#totalAboutUs",
+            {
+                scale: 0,
+            },
+            {
+                scale: 1.1,
+                duration: 0.05,
+            },
+        )
+        .fromTo(
+            "#totalAboutUs",
+            {
+                scale: 1.1,
+            },
+            {
+                scale: 1,
+                duration: 0.05,
+            },
+        )
+        .fromTo(
+            "#totalAboutUs",
+            {
+                x: 0,
+                y: 0,
+            },
+            {
+                x: 5,
+                y: 5,
+                duration: 0.05,
+            },
+        )
+        .fromTo(
+            "#totalAboutUs",
+            {
+                x: 5,
+                y: 5,
+            },
+            {
+                x: -5,
+                y: 5,
+                duration: 0.05,
+            },
+        )
+        .fromTo(
+            "#totalAboutUs",
+            {
+                x: -5,
+                y: 5,
+            },
+            {
+                x: -5,
+                y: -5,
+                duration: 0.05,
+            },
+        )
+        .fromTo(
+            "#totalAboutUs",
+            {
+                x: -5,
+                y: -5,
+            },
+            {
+                x: 0,
+                y: 0,
+                duration: 0.1,
+            },
+        )
+        .fromTo(
+            split.words,
+            {
+                scale: 0,
+                opacity: 0,
+            },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: 0.1,
+                ease: "back.out(3)", // Gives a punchy snap as letters arrive
+                stagger: {
+                    each: 0.01,
+                    from: "start", // Characters radiate outward from the center character
+                },
+            },
+        );
+</script>
