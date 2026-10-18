@@ -32,28 +32,27 @@
         type: "words",
     });
 
-    const tl = gsap
-        .timeline({
-            scrollTrigger: {
-                trigger: "#section2",
-                start: "top top",
-                end: "+=100%",
-                toggleActions: "play none none reverse",
-                scrub: false,
-                markers: true,
-                pin: true,
-            },
-        })
-        .fromTo(
-            "#totalAboutUs",
-            {
-                scale: 0,
-            },
-            {
-                scale: 1.1,
-                duration: 0.05,
-            },
-        )
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#section2",
+            start: "top top",
+            end: "+=100%",
+            toggleActions: "play none none reverse",
+            scrub: false,
+            markers: false,
+            pin: true,
+        },
+    });
+    tl.fromTo(
+        "#totalAboutUs",
+        {
+            scale: 0,
+        },
+        {
+            scale: 1.1,
+            duration: 0.05,
+        },
+    )
         .fromTo(
             "#totalAboutUs",
             {

@@ -1,7 +1,10 @@
 ---
 ---
 
-<section id='section1' class="h-screen w-full text-white flex justify-center items-center">
+<section
+    id="section1"
+    class="h-screen w-full text-white flex justify-center items-center"
+>
     <div class="flex flex-col justify-center items-center">
         <h1 class="text-[168px] font-black leading-24">SEDSVIT</h1>
         <h4 class="text-5xl font-extralight">SPACE - IT'S PRETTY DANG COOL</h4>
@@ -22,7 +25,6 @@
     gsap.registerPlugin(ScrollTrigger);
 
     initScene();
-    
     scene.background = new THREE.Color("#000000");
 
     const ambientLight = new THREE.AmbientLight(0x404040);
@@ -30,24 +32,67 @@
 
     // Set initial camera position
     camera.position.set(0, 0.5, 2);
-    
+
     const sphere = new THREE.Mesh(
         new THREE.SphereGeometry(),
         new THREE.MeshPhysicalMaterial({ color: "#00ff00" }),
     );
     sphere.position.set(0, 0, 0);
 
-    scene.add(sphere, ambientLight, directionalLight);
+    const markerCube = new THREE.Mesh(
+        new THREE.BoxGeometry(0.2, 0.2, 0.15),
+        new THREE.MeshBasicMaterial(),
+    );
+    markerCube.position.set(0, 1, 0);
+
+    scene.add(sphere, markerCube, ambientLight, directionalLight);
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            pin: true,
+            trigger: "#section1",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+        },
+        yoyo: true,
+    });
+
+    tl.fromTo(
+        camera.position,
+        {
+            z: 2,
+            y: 0.5,
+        },
+        {
+            z: 0,
+            y: 1.5,
+            duration: 1,
+        },
+        "k1", // k1 stands for keyframe1, its just a nice nomenclature i use to keep track of actions especially animations which take place in parallel
+    )
+        .fromTo(
+            camera.rotation,
+            {
+                x: 0,
+            },
+            {
+                x: -Math.PI / 2,
+                duration: 1,
+            },
+            "k1",
+        )
+        .fromTo(
+            camera.position,
+            {
+                y: 1.5,
+            },
+            {
+                y: 1.22,
+                duration: 1,
+            },
+            "k2",
+        );
 
     animate();
-
-    ScrollTrigger.create({
-        trigger: "#section1",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        onUpdate: (self) => {
-            camera.position.z = 2 + (self.progress * 3); // 2 to 5
-        },
-    });
 </script>
