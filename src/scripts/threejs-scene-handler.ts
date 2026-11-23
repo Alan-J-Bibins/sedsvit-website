@@ -17,7 +17,27 @@ export const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.z = 5;
+
+export const rig = new THREE.Object3D();
+rig.add(camera);
+scene.add(rig);
+
+export function mountGroup(group: THREE.Object3D) {
+    if (!group.parent) scene.add(group);
+}
+
+export function unmountGroup(group: THREE.Object3D, disposeThoroughly: boolean = true) {
+    scene.remove(group);
+    if (disposeThoroughly) {
+        group.traverse((obj) => {
+            if (obj instanceof THREE.Mesh) {
+                obj.geometry.dispose();
+                const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+                mats.forEach((m) => m.dispose());
+            }
+        });
+    }
+}
 
 export function initScene(): void {
     const container = document.getElementById('canvas-container');
